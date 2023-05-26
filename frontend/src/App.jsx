@@ -17,7 +17,15 @@ function App() {
     setValue(newValue);
   };
   const handleConfirm = async () => {
-    await axios.put(`http://localhost:4000/api/v1/tasks/${editElement}`, value);
+    const index = data.findIndex((e) => {
+      return e.id == editElement;
+    });
+    console.log(index, "this is data index");
+    console.log(data, "<--- this is data");
+    await axios.put(
+      `http://localhost:4000/api/v1/tasks/${editElement}`,
+      data[index]
+    );
     setEditElement(-1);
   };
   function convertToValidDate(dateString) {
